@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+body {
+  margin: 0;
+  background: #080808;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Keep form fields selectable */
+input,
+textarea {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+/* Hide browser scrollbar */
+html {
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Text selection */
+::selection {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Skills floating animation */
+@keyframes skills-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+.skills-float {
+  animation: skills-float 3.5s ease-in-out infinite;
+  will-change: transform;
+}
