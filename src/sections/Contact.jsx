@@ -159,23 +159,23 @@ function Contact() {
             <div className="pointer-events-none absolute -inset-8 -z-10 rounded-[3rem] bg-violet-600/[0.04] opacity-0 blur-3xl transition-all duration-700 group-hover:opacity-100" />
 
             <Field
+              isDesktop={isDesktop}
               label="Your name"
               placeholder="Enter your name..."
               type="text"
               name="name"
               value={formData.name}
               onChange={handleChange}
-              isDesktop={isDesktop}
             />
 
             <Field
+              isDesktop={isDesktop}
               label="Email address"
               placeholder="Enter your email..."
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
-              isDesktop={isDesktop}
             />
 
             {/* MESSAGE */}
@@ -204,8 +204,12 @@ function Contact() {
               </p>
 
               <motion.button
-                whileHover={!sending && !sent ? { scale: 1.06, rotate: -1 } : {}}
-                whileTap={!sending && !sent ? { scale: 0.94 } : {}}
+                whileHover={
+                  !sending && !sent ? { scale: 1.06, rotate: -1 } : {}
+                }
+                whileTap={
+                  !sending && !sent ? { scale: 0.94 } : {}
+                }
                 type="submit"
                 disabled={sending || sent}
                 className={`group/button relative flex h-[50px] min-w-[165px] shrink-0 items-center justify-center overflow-hidden rounded-full p-[1px] shadow-[0_0_30px_rgba(139,92,246,0.2)] transition-shadow duration-500 ${
@@ -218,7 +222,7 @@ function Contact() {
                 {/* ROTATING BORDER */}
 
                 {!sending && !sent && (
-                  <span className="absolute inset-[-100%] bg-[conic-gradient(from_0deg,transparent_0deg,transparent_70deg,#8b5cf6_110deg,#c084fc_150deg,#60a5fa_190deg,transparent_230deg,transparent_360deg)] lg:animate-[spin_4s_linear_infinite]" />
+                  <span className="absolute inset-[-100%] lg:animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0deg,transparent_70deg,#8b5cf6_110deg,#c084fc_150deg,#60a5fa_190deg,transparent_230deg,transparent_360deg)]" />
                 )}
 
                 {/* INNER BUTTON */}
@@ -242,10 +246,10 @@ function Contact() {
                     {!sending && !sent && (
                       <motion.span
                         key="normal"
-                        initial={{ opacity: 0, y: 8 }}
+                        initial={isDesktop ? { opacity: 0, y: 8 } : false}
                         animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -8 }}
-                        transition={{ duration: 0.2 }}
+                        exit={isDesktop ? { opacity: 0, y: -8 } : undefined}
+                        transition={isDesktop ? { duration: 0.2 } : undefined}
                         className="relative z-10 flex items-center gap-4"
                       >
                         <span>Send message</span>
@@ -341,7 +345,9 @@ function Contact() {
           initial={isDesktop ? { opacity: 0, y: 25 } : false}
           whileInView={isDesktop ? { opacity: 1, y: 0 } : undefined}
           viewport={isDesktop ? { once: true } : undefined}
-          transition={isDesktop ? { duration: 0.8, delay: 0.2 } : undefined}
+          transition={
+            isDesktop ? { duration: 0.8, delay: 0.2 } : undefined
+          }
           className="mt-32 sm:mt-40 md:mt-52"
         >
 
@@ -352,7 +358,11 @@ function Contact() {
               initial={isDesktop ? { x: "-100%" } : false}
               whileInView={isDesktop ? { x: "100%" } : undefined}
               viewport={isDesktop ? { once: true } : undefined}
-              transition={isDesktop ? { duration: 1.8, ease: "easeInOut" } : undefined}
+              transition={
+                isDesktop
+                  ? { duration: 1.8, ease: "easeInOut" }
+                  : undefined
+              }
               className="absolute inset-y-0 w-1/4 bg-gradient-to-r from-transparent via-violet-400/70 to-transparent"
             />
           </div>
@@ -454,13 +464,13 @@ function Contact() {
 }
 
 function Field({
+  isDesktop,
   label,
   placeholder,
   type,
   name,
   value,
   onChange,
-  isDesktop,
 }) {
   return (
     <motion.div
