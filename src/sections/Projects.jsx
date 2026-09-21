@@ -44,7 +44,13 @@ function Projects() {
   const sectionRef = useRef(null);
   const cardsRef = useRef([]);
 
+  const isDesktop =
+    typeof window !== "undefined" &&
+    window.matchMedia("(min-width: 1024px)").matches;
+
   useEffect(() => {
+    if (!isDesktop) return;
+
     const section = sectionRef.current;
     const cards = cardsRef.current.filter(Boolean);
 
@@ -74,7 +80,7 @@ function Projects() {
     }, section);
 
     return () => ctx.revert();
-  }, []);
+  }, [isDesktop]);
 
   return (
     <section
@@ -87,13 +93,17 @@ function Projects() {
         {/* HEADING */}
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{
-            duration: 0.7,
-            ease: [0.22, 1, 0.36, 1],
-          }}
+          initial={isDesktop ? { opacity: 0, y: 20 } : false}
+          whileInView={isDesktop ? { opacity: 1, y: 0 } : undefined}
+          viewport={isDesktop ? { once: true, amount: 0.3 } : undefined}
+          transition={
+            isDesktop
+              ? {
+                  duration: 0.7,
+                  ease: [0.22, 1, 0.36, 1],
+                }
+              : undefined
+          }
           className="mb-12 md:mb-16"
         >
           <div className="mb-4 flex items-center gap-3">
@@ -125,6 +135,7 @@ function Projects() {
               key={project.number}
               project={project}
               index={index}
+              isDesktop={isDesktop}
               cardRef={(element) => {
                 cardsRef.current[index] = element;
               }}
@@ -136,20 +147,21 @@ function Projects() {
   );
 }
 
-function ProjectCard({ project, index, cardRef }) {
+function ProjectCard({ project, index, isDesktop, cardRef }) {
   return (
     <motion.article
       ref={cardRef}
-      initial={{ opacity: 0, y: 35 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{
-        once: true,
-        amount: 0.2,
-      }}
-      transition={{
-        duration: 0.7,
-        ease: [0.22, 1, 0.36, 1],
-      }}
+      initial={isDesktop ? { opacity: 0, y: 35 } : false}
+      whileInView={isDesktop ? { opacity: 1, y: 0 } : undefined}
+      viewport={isDesktop ? { once: true, amount: 0.2 } : undefined}
+      transition={
+        isDesktop
+          ? {
+              duration: 0.7,
+              ease: [0.22, 1, 0.36, 1],
+            }
+          : undefined
+      }
       className={`sticky top-16 sm:top-20 lg:top-24 ${
         index === 0 ? "z-10" : index === 1 ? "z-20" : "z-30"
       }`}

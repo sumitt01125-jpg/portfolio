@@ -32,6 +32,10 @@ function Contact() {
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
 
+  const isDesktop =
+    typeof window !== "undefined" &&
+    window.matchMedia("(min-width: 1024px)").matches;
+
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -84,19 +88,18 @@ function Contact() {
           {/* LEFT */}
 
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8 }}
-            className="pt-2 md:pl-10 md:pt-8"
-          >
-            <div className="mb-7 inline-flex rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 backdrop-blur-xl sm:mb-8">
-              <span className="text-[10px] uppercase tracking-[0.3em] text-white/45">
-                Contact me
-              </span>
-            </div>
+            initial={isDesktop ? { opacity: 0, x: -30 } : false}
+            whileInView={isDesktop ? { opacity: 1, x: 0 } : undefined}
+            viewport={isDesktop ? { once: true, amount: 0.3 } : undefined}
+            transition={isDesktop ? { duration: 0.8 } : undefined}
+            className="pt-2 md:pl-10 md:pt-8"> 
+            
+           <div className="mb-7 inline-flex rounded-full border border-violet-400/20 bg-violet-500/[0.08] px-4 py-2 shadow-[0_0_25px_rgba(139,92,246,0.08)] backdrop-blur-xl sm:mb-8">
+           <span className="text-[10px] uppercase tracking-[0.3em] text-violet-300/80">
+           Contact me </span>
+          </div>
 
-            <h2 className="max-w-xl text-5xl font-medium leading-[1.02] tracking-[-0.04em] sm:text-6xl md:text-7xl">
+            <h2 className="max-w-xl text-5xl font-medium leading-[1.02] tracking-[-0.04em] text-white sm:text-6xl md:text-7xl drop-shadow-[0_0_18px_rgba(255,255,255,0.12)]">
               Let's get
               <br />
               <span className="text-white/25">in touch.</span>
@@ -140,10 +143,12 @@ function Contact() {
           {/* RIGHT FORM */}
 
           <motion.form
-            initial={{ opacity: 0, y: 35 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.8, delay: 0.15 }}
+            initial={isDesktop ? { opacity: 0, y: 35 } : false}
+            whileInView={isDesktop ? { opacity: 1, y: 0 } : undefined}
+            viewport={isDesktop ? { once: true, amount: 0.25 } : undefined}
+            transition={
+              isDesktop ? { duration: 0.8, delay: 0.15 } : undefined
+            }
             onSubmit={handleSubmit}
             className="group relative mt-0 w-full max-w-lg space-y-6 sm:mt-2 md:ml-auto md:mt-24"
           >
@@ -159,6 +164,7 @@ function Contact() {
               name="name"
               value={formData.name}
               onChange={handleChange}
+              isDesktop={isDesktop}
             />
 
             <Field
@@ -168,6 +174,7 @@ function Contact() {
               name="email"
               value={formData.email}
               onChange={handleChange}
+              isDesktop={isDesktop}
             />
 
             {/* MESSAGE */}
@@ -330,10 +337,10 @@ function Contact() {
         {/* ================= PREMIUM ENDING ================= */}
 
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          initial={isDesktop ? { opacity: 0, y: 25 } : false}
+          whileInView={isDesktop ? { opacity: 1, y: 0 } : undefined}
+          viewport={isDesktop ? { once: true } : undefined}
+          transition={isDesktop ? { duration: 0.8, delay: 0.2 } : undefined}
           className="mt-32 sm:mt-40 md:mt-52"
         >
 
@@ -341,10 +348,10 @@ function Contact() {
 
           <div className="relative h-px w-full overflow-hidden bg-white/[0.08]">
             <motion.div
-              initial={{ x: "-100%" }}
-              whileInView={{ x: "100%" }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.8, ease: "easeInOut" }}
+              initial={isDesktop ? { x: "-100%" } : false}
+              whileInView={isDesktop ? { x: "100%" } : undefined}
+              viewport={isDesktop ? { once: true } : undefined}
+              transition={isDesktop ? { duration: 1.8, ease: "easeInOut" } : undefined}
               className="absolute inset-y-0 w-1/4 bg-gradient-to-r from-transparent via-violet-400/70 to-transparent"
             />
           </div>
@@ -362,13 +369,17 @@ function Contact() {
           <div className="relative mt-10 overflow-hidden sm:mt-12">
 
             <motion.h3
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 1,
-                ease: [0.22, 1, 0.36, 1],
-              }}
+              initial={isDesktop ? { opacity: 0, y: 60 } : false}
+              whileInView={isDesktop ? { opacity: 1, y: 0 } : undefined}
+              viewport={isDesktop ? { once: true } : undefined}
+              transition={
+                isDesktop
+                  ? {
+                      duration: 1,
+                      ease: [0.22, 1, 0.36, 1],
+                    }
+                  : undefined
+              }
               className="select-none text-[18vw] font-semibold leading-[0.75] tracking-[-0.08em] text-white/[0.055] md:text-[14vw]"
             >
               SUMIT
@@ -378,10 +389,12 @@ function Contact() {
             {/* FOREGROUND NAME */}
 
             <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, delay: 0.25 }}
+              initial={isDesktop ? { opacity: 0 } : false}
+              whileInView={isDesktop ? { opacity: 1 } : undefined}
+              viewport={isDesktop ? { once: true } : undefined}
+              transition={
+                isDesktop ? { duration: 1, delay: 0.25 } : undefined
+              }
               className="pointer-events-none absolute inset-0 flex items-center"
             >
               <span className="text-3xl font-medium tracking-[-0.04em] text-white/90 sm:text-4xl md:text-5xl">
@@ -446,13 +459,14 @@ function Field({
   name,
   value,
   onChange,
+  isDesktop,
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: 15 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
+      initial={isDesktop ? { opacity: 0, x: 15 } : false}
+      whileInView={isDesktop ? { opacity: 1, x: 0 } : undefined}
+      viewport={isDesktop ? { once: true } : undefined}
+      transition={isDesktop ? { duration: 0.5 } : undefined}
     >
       <label className="mb-3 block text-[11.5px] text-violet-400">
         {label}
