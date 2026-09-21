@@ -99,7 +99,13 @@ function Skills() {
   const sectionRef = useRef(null);
   const itemsRef = useRef([]);
 
+  const isDesktop =
+    typeof window !== "undefined" &&
+    window.matchMedia("(min-width: 1024px)").matches;
+
   useEffect(() => {
+    if (!isDesktop) return;
+
     const section = sectionRef.current;
     const items = itemsRef.current.filter(Boolean);
 
@@ -141,7 +147,7 @@ function Skills() {
     }, section);
 
     return () => ctx.revert();
-  }, []);
+  }, [isDesktop]);
 
   return (
     <section
@@ -158,13 +164,17 @@ function Skills() {
         {/* HEADING */}
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{
-            duration: 0.7,
-            ease: [0.22, 1, 0.36, 1],
-          }}
+          initial={isDesktop ? { opacity: 0, y: 20 } : false}
+          whileInView={isDesktop ? { opacity: 1, y: 0 } : undefined}
+          viewport={isDesktop ? { once: true, amount: 0.3 } : undefined}
+          transition={
+            isDesktop
+              ? {
+                  duration: 0.7,
+                  ease: [0.22, 1, 0.36, 1],
+                }
+              : undefined
+          }
           className="md:pl-10"
         >
           <div className="mb-4 flex items-center gap-3">
@@ -204,6 +214,7 @@ function Skills() {
                   skill={skill}
                   index={index}
                   itemsRef={itemsRef}
+                  isDesktop={isDesktop}
                 />
               ))}
             </div>
@@ -217,6 +228,7 @@ function Skills() {
                   skill={skill}
                   index={index + 6}
                   itemsRef={itemsRef}
+                  isDesktop={isDesktop}
                 />
               ))}
             </div>
@@ -230,6 +242,7 @@ function Skills() {
                   skill={skill}
                   index={index + 11}
                   itemsRef={itemsRef}
+                  isDesktop={isDesktop}
                 />
               ))}
             </div>
@@ -243,6 +256,7 @@ function Skills() {
                   skill={skill}
                   index={index + 14}
                   itemsRef={itemsRef}
+                  isDesktop={isDesktop}
                 />
               ))}
             </div>
@@ -261,6 +275,7 @@ function Skills() {
                   skill={skill}
                   index={index}
                   itemsRef={itemsRef}
+                  isDesktop={isDesktop}
                 />
               ))}
             </div>
@@ -274,6 +289,7 @@ function Skills() {
                   skill={skill}
                   index={index + 8}
                   itemsRef={itemsRef}
+                  isDesktop={isDesktop}
                 />
               ))}
             </div>
@@ -287,6 +303,7 @@ function Skills() {
                   skill={skill}
                   index={index + 14}
                   itemsRef={itemsRef}
+                  isDesktop={isDesktop}
                 />
               ))}
             </div>
@@ -296,13 +313,17 @@ function Skills() {
         {/* FOOTER */}
 
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{
-            duration: 0.7,
-            delay: 0.25,
-          }}
+          initial={isDesktop ? { opacity: 0 } : false}
+          whileInView={isDesktop ? { opacity: 1 } : undefined}
+          viewport={isDesktop ? { once: true } : undefined}
+          transition={
+            isDesktop
+              ? {
+                  duration: 0.7,
+                  delay: 0.25,
+                }
+              : undefined
+          }
           className="mt-10 flex items-center justify-center gap-3 sm:mt-12"
         >
           <span className="h-px w-6 bg-violet-400/30" />
@@ -318,7 +339,7 @@ function Skills() {
   );
 }
 
-function SkillCard({ skill, index, itemsRef }) {
+function SkillCard({ skill, index, itemsRef, isDesktop }) {
   return (
     <div
       ref={(element) => {
@@ -327,18 +348,26 @@ function SkillCard({ skill, index, itemsRef }) {
       className="group flex w-[42px] min-w-0 cursor-default flex-col items-center gap-2 sm:w-[52px] lg:w-[76px] lg:shrink-0 lg:gap-3"
     >
       <motion.div
-        animate={{
-          y: [0, -7, 0],
-        }}
-        transition={{
-          y: {
-            duration: 3.2 + (index % 4) * 0.4,
-            repeat: Infinity,
-            repeatType: "mirror",
-            ease: "easeInOut",
-            delay: index * 0.12,
-          },
-        }}
+        animate={
+          isDesktop
+            ? {
+                y: [0, -7, 0],
+              }
+            : undefined
+        }
+        transition={
+          isDesktop
+            ? {
+                y: {
+                  duration: 3.2 + (index % 4) * 0.4,
+                  repeat: Infinity,
+                  repeatType: "mirror",
+                  ease: "easeInOut",
+                  delay: index * 0.12,
+                },
+              }
+            : undefined
+        }
         className="flex flex-col items-center gap-2 lg:gap-3"
       >
 
