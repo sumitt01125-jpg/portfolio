@@ -92,14 +92,15 @@ function Contact() {
             whileInView={isDesktop ? { opacity: 1, x: 0 } : undefined}
             viewport={isDesktop ? { once: true, amount: 0.3 } : undefined}
             transition={isDesktop ? { duration: 0.8 } : undefined}
-            className="pt-2 md:pl-10 md:pt-8"> 
-            
-           <div className="mb-7 inline-flex rounded-full border border-violet-400/20 bg-violet-500/[0.08] px-4 py-2 shadow-[0_0_25px_rgba(139,92,246,0.08)] backdrop-blur-xl sm:mb-8">
-           <span className="text-[10px] uppercase tracking-[0.3em] text-violet-300/80">
-           Contact me </span>
-          </div>
+            className="pt-2 md:pl-10 md:pt-8"
+          >
+            <div className="mb-7 inline-flex rounded-full border border-violet-400/20 bg-violet-500/[0.08] px-4 py-2 shadow-[0_0_25px_rgba(139,92,246,0.08)] backdrop-blur-xl sm:mb-8">
+              <span className="text-[10px] uppercase tracking-[0.3em] text-violet-300/80">
+                Contact me
+              </span>
+            </div>
 
-            <h2 className="max-w-xl text-5xl font-medium leading-[1.02] tracking-[-0.04em] text-white sm:text-6xl md:text-7xl drop-shadow-[0_0_18px_rgba(255,255,255,0.12)]">
+            <h2 className="max-w-xl text-5xl font-medium leading-[1.02] tracking-[-0.04em] sm:text-6xl md:text-7xl">
               Let's get
               <br />
               <span className="text-white/25">in touch.</span>
@@ -217,7 +218,7 @@ function Contact() {
                 {/* ROTATING BORDER */}
 
                 {!sending && !sent && (
-                  <span className="absolute inset-[-100%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0deg,transparent_70deg,#8b5cf6_110deg,#c084fc_150deg,#60a5fa_190deg,transparent_230deg,transparent_360deg)]" />
+                  <span className="absolute inset-[-100%] bg-[conic-gradient(from_0deg,transparent_0deg,transparent_70deg,#8b5cf6_110deg,#c084fc_150deg,#60a5fa_190deg,transparent_230deg,transparent_360deg)] lg:animate-[spin_4s_linear_infinite]" />
                 )}
 
                 {/* INNER BUTTON */}
@@ -447,7 +448,7 @@ function Contact() {
 
       {/* SUBTLE LOCAL ACCENT */}
 
-      <div className="pointer-events-none absolute bottom-[-250px] left-1/2 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-violet-600/[0.025] blur-[150px]" />
+      <div className="pointer-events-none absolute bottom-[-250px] left-1/2 hidden h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-violet-600/[0.025] blur-[150px] lg:block" />
     </section>
   );
 }
