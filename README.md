@@ -1,16 +1,50 @@
-# React + Vite
+# Sumit Kumar — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, interactive developer portfolio built to showcase my projects, skills, experience, and development journey.
 
-Currently, two official plugins are available:
+## 🌐 Live Portfolio
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+[Visit Portfolio](https://portfolio-three-liard-x0ja75m2ur.vercel.app)
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Responsive design across desktop, tablet, and mobile
+- Smooth scrolling and interactive animations
+- Modern dark UI with a violet visual theme
+- Project showcase
+- Skills section
+- Education timeline
+- Contact section
+- Performance-focused implementation
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React
+- Vite
+- Tailwind CSS
+- Framer Motion
+- GSAP
+- Lenis
+- JavaScript
+
+## 📂 Project Structure
+
+```text
+src/
+├── components/
+│   ├── Background.jsx
+│   ├── Loader.jsx
+│   ├── Navbar.jsx
+│   └── SmoothScroll.jsx
+│
+├── sections/
+│   ├── About.jsx
+│   ├── Contact.jsx
+│   ├── Education.jsx
+│   ├── Hero.jsx
+│   ├── Projects.jsx
+│   └── Skills.jsx
+│
+├── App.jsx
+├── index.css
+└── main.jsx
