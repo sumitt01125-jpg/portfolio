@@ -126,14 +126,14 @@ function Hero() {
           </a>
 
           <a
-            href="#"
+            href="https://github.com/sumitt01125-jpg"
             className="shrink-0 transition-colors duration-200 hover:text-white"
           >
             gh
           </a>
 
           <a
-            href="#"
+            href="https://www.instagram.com/sumitt_2025?stkn=MTViMmR5OWlzZm10OQ=="
             aria-label="Instagram"
             className="shrink-0 transition-opacity duration-200 hover:opacity-100"
           >

@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const socials = [
   {
     name: "GitHub",
-    href: "#",
+    href: "https://github.com/sumitt01125-jpg",
     icon: "https://cdn.simpleicons.org/github/ffffff",
   },
 
@@ -17,7 +17,7 @@ const socials = [
 
   {
     name: "Instagram",
-    href: "#",
+    href: "https://www.instagram.com/sumitt_2025?stkn=MTViMmR5OWlzZm10OQ==",
     icon: "https://cdn.simpleicons.org/instagram/ffffff",
   },
 ];
